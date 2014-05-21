@@ -1,0 +1,64 @@
+#!/bin/bash
+# ipython       Init script for running ipython notebook as a daemon process
+#
+# Author:       David Coss <david@davecoss.com>
+#
+# chkconfig: - 98 02
+#
+# description: IPython notebook server, running as ipython user
+# processname: ipython
+
+PATH=/usr/bin:/sbin:/bin:/usr/sbin
+export PATH
+
+IPYTHON_USER=ipython
+IPYTHON_IP=192.168.58.211
+IPYTHON_NOTEBOOKDIR=/vagrant_data/notebooks
+
+# System files
+PIDFILE=/var/run/ipython.pid
+LOCKFILE=/var/lock/subsys/ipython
+LOGFILE=/var/log/ipython/ipython
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+start() {
+	echo -n $"Starting ipython notebook: "
+	if [ -s $PIDFILE ];then
+		RETVAl=1
+		echo -n "ipython is already running "
+	else
+		cd /tmp
+		sudo -u $IPYTHON_USER ipython notebook --notebook-dir $IPYTHON_NOTEBOOKDIR --pylab inline --ip $IPYTHON_IP --logfile=$LOGFILE --no-browser &
+		RETVAL=$?
+		PID=$!
+	fi
+	if [[ $RETVAL == 0 ]];then
+		touch $LOCKFILE
+		echo $PID > $PIDFILE
+	fi
+	return $RETVAL
+}
+
+stop() {
+    echo -n $"Stopping puppet agent: "
+    killproc ipython
+    RETVAL=$?
+    echo
+    [ $RETVAL = 0 ] && rm -f $LOCKFILE $PIDFILE
+}
+
+case "$1" in
+	start)
+		start
+		;;
+	stop)
+		stop
+		;;
+	*)
+		echo Unknown Argument $1 >&2
+		exit 1
+		;;
+esac
+

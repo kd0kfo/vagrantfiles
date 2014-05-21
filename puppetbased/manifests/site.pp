@@ -14,7 +14,7 @@ class pip {
 }
 
 class devbox {
-	package {["python", "python-devel", "python-setuptools", "vim-enhanced", "emacs", "elinks", "gcc", "gcc-c++", "java", "java-devel", "make", "git", "subversion"]:}
+	package {["python", "python-devel", "vim-enhanced", "emacs", "elinks", "gcc", "gcc-c++", "java", "java-devel", "make", "git", "subversion"]:}
 
 	class {"pip":}
 }
@@ -40,6 +40,14 @@ node ipython {
 	class {"pip":}
 
 	package {["python", "python-devel", "python-matplotlib", "python-gtkextra", "vim-enhanced", "emacs", "elinks", "gcc", "gcc-c++", "make", "git", "subversion", "blas-devel", "lapack-devel", "freetype-devel"]:}
+
+	file {"/etc/init.d/ipython":
+		ensure => file,
+		owner => "root",
+		group => "root",
+		mode => 0744,
+		content => "puppet:///modules/files/etc/init.d/ipython",
+	}
 
 	file {"/etc/motd":
 		content => "This is an ipython notebook server made using Vagrant and Puppet\n"
@@ -82,6 +90,22 @@ node ipython {
 		project => "pyzmq",
 		unless => "pip freeze |grep zmq",
 		require => Class["pip"],
+	}
+
+}
+
+class webbox {
+	package {["httpd", "php", "php-devel", "postgresql-server", "perl", "python", "python-devel", "vim-enhanced", "emacs", "elinks", "gcc", "gcc-c++", "java", "java-devel", "make", "git", "subversion"]:}
+
+	class {"pip":}
+}
+
+node webbox {
+	class{"webbox":}
+
+	file {"/etc/motd":
+		content => "This machine was setup using vagrant and puppet to be a web server.",
+		ensure => present,
 	}
 
 }
