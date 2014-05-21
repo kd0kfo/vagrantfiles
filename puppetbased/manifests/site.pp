@@ -41,8 +41,21 @@ node ipython {
 
 	package {["python", "python-devel", "python-matplotlib", "python-gtkextra", "vim-enhanced", "emacs", "elinks", "gcc", "gcc-c++", "make", "git", "subversion", "blas-devel", "lapack-devel", "freetype-devel"]:}
 
+	group {"ipython":
+		system => true,
+		ensure => present,
+	}
+
+	user {"ipython":
+		ensure => present,
+		gid => "ipython",
+		managehome => true,
+		require => Group["ipython"],
+	}	
+
 	file {"/etc/init.d/ipython":
 		ensure => file,
+		replace => false,
 		owner => "root",
 		group => "root",
 		mode => 0744,
@@ -64,6 +77,11 @@ node ipython {
 	package {"scipy":
 		provider => "pip",
 		require => Package["numpy >= 1.8.1"],
+	}
+
+	package {"pandas":
+		provider => "pip",
+		require => Package["scipy"],
 	}
 
 	github::clone {"ipython":
