@@ -46,7 +46,7 @@ node ipython {
 		owner => "root",
 		group => "root",
 		mode => 0744,
-		content => "puppet:///modules/files/etc/init.d/ipython",
+		source => "puppet:///modules/files/etc/init.d/ipython",
 	}
 
 	file {"/etc/motd":
