@@ -36,7 +36,7 @@ node devbox {
 	}
 }
 
-node ipython {
+class ipython {
 	class {"pip":}
 
 	package {["python", "python-devel", "python-matplotlib", "python-gtkextra", "vim-enhanced", "emacs", "elinks", "gcc", "gcc-c++", "make", "git", "subversion", "blas-devel", "lapack-devel", "freetype-devel"]:}
@@ -47,10 +47,6 @@ node ipython {
 		group => "root",
 		mode => 0744,
 		source => "puppet:///modules/files/etc/init.d/ipython",
-	}
-
-	file {"/etc/motd":
-		content => "This is an ipython notebook server made using Vagrant and Puppet\n"
 	}
 
 	package {["pygments", "tornado", "jinja2", "Cython"]:
@@ -90,6 +86,15 @@ node ipython {
 		project => "pyzmq",
 		unless => "pip freeze |grep zmq",
 		require => Class["pip"],
+	}
+
+}
+
+node "ipython", /ipython\..+/ {
+	class {"ipython":}
+	
+	file {"/etc/motd":
+		content => "This is an ipython notebook server made using Vagrant and Puppet\n"
 	}
 
 }
