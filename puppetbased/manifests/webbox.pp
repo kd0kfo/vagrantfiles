@@ -6,6 +6,4 @@ node webbox {
 		ensure => present,
 	}
 
-	class{"cmake":}
-
 }
