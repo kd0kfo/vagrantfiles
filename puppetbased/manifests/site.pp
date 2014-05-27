@@ -13,8 +13,16 @@ class pip {
 	}
 }
 
+class basicdev {
+	package {["gcc", "gcc-c++", "java", "java-devel", "make", "git", "subversion", "zip", "unzip"]:}
+	
+}
+
 class devbox {
-	package {["python", "python-devel", "vim-enhanced", "emacs", "elinks", "gcc", "gcc-c++", "java", "java-devel", "make", "git", "subversion"]:}
+	class {"basicdev":}
+	package {["python", "python-devel", "vim-enhanced", "emacs", "elinks"]
+		require => Class["basicdev"]
+	}
 
 	class {"pip":}
 }
@@ -37,9 +45,12 @@ node devbox {
 }
 
 class ipython {
+	
+	class {"basicdev":}
+	package {["python", "python-devel", "python-matplotlib", "python-gtkextra", "vim-enhanced", "emacs", "elinks"]:
+		require => Class["basicdev"],
+	}
 	class {"pip":}
-
-	package {["python", "python-devel", "python-matplotlib", "python-gtkextra", "vim-enhanced", "emacs", "elinks", "gcc", "gcc-c++", "make", "git", "subversion", "blas-devel", "lapack-devel", "freetype-devel"]:}
 
 	group {"ipython":
 		system => true,
@@ -118,7 +129,11 @@ node "ipython", /ipython\..+/ {
 }
 
 class webbox {
-	package {["httpd", "php", "php-devel", "php-pdo", "sqlite", "postgresql-server", "perl", "python", "python-devel", "vim-enhanced", "emacs", "elinks", "gcc", "gcc-c++", "java", "java-devel", "make", "git", "subversion"]:}
+	class {"basicdev":}
+	
+	package {["httpd", "php", "php-devel", "php-pdo", "sqlite", "postgresql-server", "perl", "python", "python-devel", "vim-enhanced", "emacs", "elinks"]:
+		require => Class["basicdev"]
+	}
 
 	class {"pip":}
 }
