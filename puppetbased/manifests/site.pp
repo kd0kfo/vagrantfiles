@@ -118,7 +118,7 @@ node "ipython", /ipython\..+/ {
 }
 
 class webbox {
-	package {["httpd", "php", "php-devel", "postgresql-server", "perl", "python", "python-devel", "vim-enhanced", "emacs", "elinks", "gcc", "gcc-c++", "java", "java-devel", "make", "git", "subversion"]:}
+	package {["httpd", "php", "php-devel", "php-pdo", "sqlite", "postgresql-server", "perl", "python", "python-devel", "vim-enhanced", "emacs", "elinks", "gcc", "gcc-c++", "java", "java-devel", "make", "git", "subversion"]:}
 
 	class {"pip":}
 }
