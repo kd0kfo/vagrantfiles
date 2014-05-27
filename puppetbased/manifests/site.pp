@@ -20,7 +20,7 @@ class basicdev {
 
 class devbox {
 	class {"basicdev":}
-	package {["python", "python-devel", "vim-enhanced", "emacs", "elinks"]
+	package {["python", "python-devel", "vim-enhanced", "emacs", "elinks"]:
 		require => Class["basicdev"]
 	}
 
