@@ -1,0 +1,6 @@
+[submodule "puppetbased/modules/cmake"]
+	path = puppetbased/modules/cmake
+	url = https://github.com/treydock/puppet-cmake
+[submodule "puppetbased/modules/epel"]
+	path = puppetbased/modules/epel
+	url = https://github.com/stahnma/puppet-module-epel

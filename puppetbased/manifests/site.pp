@@ -1,23 +1,3 @@
-class pip {
-	package {"python-setuptools":}
-
-	exec {"easy_install pip":
-		path => "/usr/local/bin:/usr/bin:/bin",
-		onlyif => "which easy_install",
-		unless => "which pip",
-		require => Package["python-setuptools"],
-	} -> file {"pip-link":
-		target => "/usr/bin/pip",
-		ensure => "link",
-		path => "/usr/bin/pip-python",
-	}
-}
-
-class basicdev {
-	package {["gcc", "gcc-c++", "java", "java-devel", "make", "git", "subversion", "zip", "unzip"]:}
-	
-}
-
 class devbox {
 	class {"basicdev":}
 	package {["python", "python-devel", "vim-enhanced", "emacs", "elinks"]:
@@ -128,22 +108,4 @@ node "ipython", /ipython\..+/ {
 
 }
 
-class webbox {
-	class {"basicdev":}
-	
-	package {["httpd", "php", "php-devel", "php-pdo", "sqlite", "postgresql-server", "perl", "python", "python-devel", "vim-enhanced", "emacs", "elinks"]:
-		require => Class["basicdev"]
-	}
 
-	class {"pip":}
-}
-
-node webbox {
-	class{"webbox":}
-
-	file {"/etc/motd":
-		content => "This machine was setup using vagrant and puppet to be a web server.",
-		ensure => present,
-	}
-
-}
