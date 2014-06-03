@@ -1,6 +1,10 @@
 class rstudio {
 	class {"epel":}
 
+	package {"git":
+		ensure => "installed",
+	}
+		
 	package {"R-devel":
 		require => Class["epel"],
 	}
