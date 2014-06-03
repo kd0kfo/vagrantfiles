@@ -4,3 +4,12 @@
 [submodule "puppetbased/modules/epel"]
 	path = puppetbased/modules/epel
 	url = https://github.com/stahnma/puppet-module-epel
+[submodule "puppetbased/modules/lvm"]
+	path = puppetbased/modules/lvm
+	url = https://github.com/puppetlabs/puppetlabs-lvm.git
+[submodule "puppetbased/modules/stdlib"]
+	path = puppetbased/modules/stdlib
+	url = https://github.com/puppetlabs/puppetlabs-stdlib.git
+[submodule "puppetbased/modules/vcsrepo"]
+	path = puppetbased/modules/vcsrepo
+	url = https://github.com/puppetlabs/puppetlabs-vcsrepo.git
