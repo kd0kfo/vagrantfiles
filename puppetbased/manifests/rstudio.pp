@@ -1,4 +1,4 @@
-node "rstudio", /rstudio\..+/ {
+node default {
 	class {"rstudio":}
 
 	file {"/etc/motd":

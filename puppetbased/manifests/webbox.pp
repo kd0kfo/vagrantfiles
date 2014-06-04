@@ -1,4 +1,4 @@
-node webbox {
+node default {
 	class{"webbox":}
 
 	file {"/etc/motd":

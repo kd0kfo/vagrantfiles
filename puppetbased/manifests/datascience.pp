@@ -1,4 +1,4 @@
-node "datascience", /datascience\..+/ {
+node default {
 	class {"rstudio":}
 	class {"ipython":}
 
@@ -6,3 +6,4 @@ node "datascience", /datascience\..+/ {
 		content => "This is a server with Data Science Tools build using Vagrant and Puppet",
 		ensure => present,
 	}
+}
