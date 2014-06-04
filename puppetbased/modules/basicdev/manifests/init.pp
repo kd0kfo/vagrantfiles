@@ -1,6 +1,6 @@
 class basicdev {
 	class {"basicdev::gcc":}
-	class {"basicdev::opendjk":}
+	class {"basicdev::openjdk":}
 	class {"basicdev::vcs":}
 	class {"basicdev::editors":}
 	class {"basicdev::python":}
