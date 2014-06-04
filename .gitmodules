@@ -13,3 +13,6 @@
 [submodule "puppetbased/modules/vcsrepo"]
 	path = puppetbased/modules/vcsrepo
 	url = https://github.com/puppetlabs/puppetlabs-vcsrepo.git
+[submodule "puppetbased/modules/wget"]
+	path = puppetbased/modules/wget
+	url = https://github.com/maestrodev/puppet-wget.git
