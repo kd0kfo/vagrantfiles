@@ -3,7 +3,7 @@ class rstudio::base {
 		destination => '/tmp/rstudio-server.rpm',
 	}
 	package {"R-devel":
-		require => Class["epel"],
+		require => [Class["epel"], Package["blas-devel"], Package["lapack-devel"]],
 	}
 
 	exec {"yum localinstall -y --nogpgcheck /tmp/rstudio-server.rpm":
