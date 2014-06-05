@@ -2,7 +2,7 @@ class rstudio::base {
 	wget::fetch {"http://download2.rstudio.org/rstudio-server-0.98.507-x86_64.rpm":
 		destination => '/tmp/rstudio-server.rpm',
 	}
-	package {"R-devel":
+	package {["R", "R-devel"]:
 		require => [Class["epel"], Package["blas-devel"], Package["lapack-devel"]],
 	}
 
