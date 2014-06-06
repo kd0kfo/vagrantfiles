@@ -52,4 +52,14 @@ class ipython::base {
 		require => Package["Cython"],
 	}
 
+       pip::install {"ipython":
+               sourcedir => "/usr/src/ipython",
+               require => [Pip::Install["pyzmq"], Vcsrepo["/usr/src/ipython"]],
+       }
+
+       pip::install {"pyzmq":
+               sourcedir => "/usr/src/pyzmq",
+               require => Vcsrepo["/usr/src/pyzmq"],
+       }
+
 }
