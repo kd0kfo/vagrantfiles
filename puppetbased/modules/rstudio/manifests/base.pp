@@ -1,5 +1,6 @@
 class rstudio::base {
-	wget::fetch {"https://s3.amazonaws.com/rstudio-dailybuilds/rstudio-server-0.98.894-x86_64.rpm":
+	wget::fetch {"rstudio-server-wget-fetch":
+		source => "https://s3.amazonaws.com/rstudio-dailybuilds/rstudio-server-0.98.894-x86_64.rpm"
 		destination => '/tmp/rstudio-server.rpm',
 	}
 	package {["R", "R-devel"]:
@@ -8,7 +9,7 @@ class rstudio::base {
 
 	exec {"yum localinstall -y --nogpgcheck /tmp/rstudio-server.rpm":
 		path => "/usr/bin:/usr/sbin:/bin",
-		require => [Class["epel"], Wget::Fetch["http://download2.rstudio.org/rstudio-server-0.98.507-x86_64.rpm"]],
+		require => [Class["epel"], Wget::Fetch["rstudio-server-wget-fetch"]],
 		unless => "which rstudio-server",
 	}	
 
