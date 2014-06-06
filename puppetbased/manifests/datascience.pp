@@ -3,6 +3,10 @@ class datascienceprereq {
 	class {"epel":}
 	class {"pip":}
 	package {["blas-devel", "lapack-devel"]:}
+	package {["python-matplotlib", "python-gtkextra",  "elinks"]:
+                require => Class["basicdev"],
+        }
+
 }
 
 node default {
