@@ -1,6 +1,6 @@
 class rstudio::base {
 	wget::fetch {"rstudio-server-wget-fetch":
-		source => "https://s3.amazonaws.com/rstudio-dailybuilds/rstudio-server-0.98.894-x86_64.rpm"
+		source => "https://s3.amazonaws.com/rstudio-dailybuilds/rstudio-server-0.98.894-x86_64.rpm",
 		destination => '/tmp/rstudio-server.rpm',
 	}
 	package {["R", "R-devel"]:
