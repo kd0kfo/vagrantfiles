@@ -24,19 +24,6 @@ class ipython::base {
 		provider => "pip",
 		require => Class["pip"],
 	}
-	package {"numpy >= 1.8.1":
-		provider => "pip",	
-		require => [Class["pip"], Package["blas-devel"], Package["lapack-devel"], Package['python-devel']],
-	}
-	package {"scipy":
-		provider => "pip",
-		require => Package["numpy >= 1.8.1"],
-	}
-
-	package {"pandas":
-		provider => "pip",
-		require => Package["scipy"],
-	}
 
 	vcsrepo {"/usr/src/ipython":
 		ensure => present,
