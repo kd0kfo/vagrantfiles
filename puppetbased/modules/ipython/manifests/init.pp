@@ -10,7 +10,7 @@ class ipython {
 	package {"scipy":
 		provider => "pip",
 	} ->
-	package {["pandas", "openpyxl<2.0.0"]:
+	package {["pandas", "openpyxl<2.0.0", "scikit-learn"]:
 		provider => "pip",
 	}
 
