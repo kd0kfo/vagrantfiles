@@ -14,6 +14,9 @@ class datascienceprereq {
 	} ->
 	package {["pandas", "openpyxl<2.0.0", "scikit-learn"]:
 		provider => "pip",
+	} ->
+	package {"twitter":
+		provider => "pip"
 	}
 
 }
