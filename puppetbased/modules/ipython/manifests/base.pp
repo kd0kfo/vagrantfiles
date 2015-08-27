@@ -12,7 +12,7 @@ class ipython::base {
 	}	
 
 	file {"/etc/init.d/ipython":
-		ensure => file,
+		ensure => present,
 		replace => false,
 		owner => "root",
 		group => "root",
