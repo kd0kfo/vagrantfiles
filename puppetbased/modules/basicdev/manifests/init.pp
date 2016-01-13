@@ -4,6 +4,6 @@ class basicdev {
 	class {"basicdev::vcs":}
 	class {"basicdev::editors":}
 	class {"basicdev::python":}
-	package {["make", "zip", "unzip"]:}
+	package {["make", "autoconf", "automake", "zip", "unzip"]:}
 	
 }
